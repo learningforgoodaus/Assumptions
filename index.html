@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Activity: Blind Spots</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Use Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for chat bubbles */
+        .chat-bubble {
+            max-width: 75%;
+            padding: 12px 16px;
+            border-radius: 20px;
+            word-wrap: break-word;
+        }
+        .user-bubble {
+            background-color: #E0E7FF; /* Light indigo */
+            color: #1F2937; /* Dark gray */
+            border-bottom-right-radius: 4px;
+        }
+        .problem-bubble {
+            background-color: #F3F4F6; /* Light gray */
+            color: #111827; /* Dark gray */
+            border-bottom-left-radius: 4px;
+        }
+        .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 antialiased">
+
+    <div class="container mx-auto max-w-3xl p-4 sm:p-6 md:p-8">
+        
+        <!-- Activity Title -->
+        <header class="mb-6 p-6 md:p-8 rounded-xl" style="background-color: #513873;">
+            <h1 class="text-3xl font-bold text-white">Learning Activity: Understanding Your 'Blind Spots'</h1>
+            <p class="mt-2 text-lg text-indigo-100">In a busy club, we often make quick judgments. Let's look at some common "shortcuts" and why they can be dangerous.</p>
+        </header>
+
+        <!-- Chat Feed Container -->
+        <div class="space-y-6">
+
+            <!-- Item 1 -->
+            <!-- User Thought -->
+            <div class="flex justify-end items-start space-x-3">
+                <div class="chat-bubble user-bubble">
+                    <p class="font-semibold">Common Thought</p>
+                    <p>"It's just a drunk argument."</p>
+                </div>
+                <!-- User Icon: Assumes 'user_icon.png' is in the same folder -->
+                <img src="user_icon.png" 
+                     alt="Common Thought" 
+                     class="icon bg-indigo-200"
+                     onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+            </div>
+            
+            <!-- Problem Explanation -->
+            <div class="flex justify-start items-start space-x-3">
+                <!-- Problem Icon: Assumes 'problem_icon.png' is in the same folder -->
+                <img src="problem_icon.png" 
+                     alt="The Problem" 
+                     class="icon bg-red-200"
+                     onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <div class="chat-bubble problem-bubble">
+                    <p class="font-semibold text-red-700">The Problem</p>
+                    <p>We blame the alcohol instead of the abuser's actions. It's easy to assume both people are equally at fault, which might make us miss the signs of fear or control.</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <!-- User Thought -->
+            <div class="flex justify-end items-start space-x-3">
+                <div class="chat-bubble user-bubble">
+                    <p class="font-semibold">Common Thought</p>
+                    <p>"That's a private matter, it's not our business."</p>
+                </div>
+                <img src="user_icon.png" 
+                     alt="Common Thought" 
+                     class="icon bg-indigo-200"
+                     onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+            </div>
+            
+            <!-- Problem Explanation -->
+            <div class="flex justify-start items-start space-x-3">
+                <img src="problem_icon.png" 
+                     alt="The Problem" 
+                     class="icon bg-red-200"
+                     onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <div class="chat-bubble problem-bubble">
+                    <p class="font-semibold text-red-700">The Problem</p>
+                    <p>We all value privacy, and it can feel wrong to 'interfere' in someone's personal life. But our job description includes a duty of care. When a person's safety is at risk, it is our business.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <!-- User Thought -->
+            <div class="flex justify-end items-start space-x-3">
+                <div class="chat-bubble user-bubble">
+                    <p class="font-semibold">Common Thought</p>
+                    <p>"They're always dramatic" or "They're just carrying on."</p>
+                </div>
+                <img src="user_icon.png" 
+                     alt="Common Thought" 
+                     class="icon bg-indigo-200"
+                     onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+            </div>
+            
+            <!-- Problem Explanation -->
+            <div class="flex justify-start items-start space-x-3">
+                <img src="problem_icon.png" 
+                     alt="The Problem" 
+                     class="icon bg-red-200"
+                     onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <div class="chat-bubble problem-bubble">
+                    <p class="font-semibold text-red-700">The Problem</p>
+                    <p>If we've labelled a regular as 'difficult' or 'high-drama', we can start to tune them out. We stop seeing real signs of danger and just put it down to 'them being them'.</p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <!-- User Thought -->
+            <div class="flex justify-end items-start space-x-3">
+                <div class="chat-bubble user-bubble">
+                    <p class="font-semibold">Common Thought</p>
+                    <p>"If it's so bad, why don't they just leave?"</p>
+                </div>
+                <img src="user_icon.png" 
+                     alt="Common Thought" 
+                     class="icon bg-indigo-200"
+                     onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+            </div>
+            
+            <!-- Problem Explanation -->
+            <div class="flex justify-start items-start space-x-3">
+                <img src="problem_icon.png" 
+                     alt="The Problem" 
+                     class="icon bg-red-200"
+                     onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <div class="chat-bubble problem-bubble">
+                    <p class="font-semibold text-red-700">The Problem</p>
+                    <p>This is a very common question, but it unfairly puts the focus on the victim's choices instead of the abuser's actions. As we'll learn, the reasons people stay are complex, often involving money, children, or genuine fear for their safety.</p>
+                </div>
+            </div>
+
+        </div> <!-- End Chat Feed -->
+
+        <!-- Concluding Section -->
+        <footer class="mt-10 pt-6 border-t border-gray-300">
+            <h2 class="text-2xl font-bold text-gray-900">The Goal: Awareness, Not Judgment</h2>
+            <p class="mt-2 text-base text-gray-700">This isn't about telling you your values are wrong. The goal is <strong>self-awareness</strong>.</p>
+            <p class="mt-2 text-base text-gray-700">By understanding our own biases, we can make sure they don't stop us from acting when someone might need help.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
