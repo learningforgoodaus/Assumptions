@@ -7,9 +7,9 @@
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Use Inter font */
+        /* Use Helvetica font as requested, with Inter as a fallback */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Helvetica', 'Inter', sans-serif;
         }
         /* Custom styles for chat bubbles */
         .chat-bubble {
@@ -17,6 +17,17 @@
             padding: 12px 16px;
             border-radius: 20px;
             word-wrap: break-word;
+        }
+        /* Styling for the selectable wrapper */
+        .bubble-wrapper[data-active="true"] {
+            cursor: pointer;
+        }
+        .bubble-wrapper[data-active="true"] .chat-bubble {
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+        .bubble-wrapper[data-active="true"]:hover .chat-bubble {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .user-bubble {
             background-color: #E0E7FF; /* Light indigo */
@@ -33,8 +44,55 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
+            flex-shrink: 0;
         }
     </style>
+    <script>
+        // JavaScript for sequential reveal
+        let currentStep = 0;
+        // This array defines the ID of the *next* element to reveal
+        const steps = [
+            'item-1-problem', // Revealed by step 0
+            'item-2-user',    // Revealed by step 1
+            'item-2-problem', // Revealed by step 2
+            'item-3-user',    // Revealed by step 3
+            'item-3-problem', // Revealed by step 4
+            'item-4-user',    // Revealed by step 5
+            'item-4-problem', // Revealed by step 6
+            'footer-goal'     // Revealed by step 7
+        ];
+
+        function revealNext(clickedElement) {
+            // 1. Check if the element clicked is the one we expect
+            // This prevents clicking old bubbles out of order
+            if (parseInt(clickedElement.dataset.step) !== currentStep) {
+                return;
+            }
+
+            // 2. Disable the element that was just clicked
+            clickedElement.dataset.active = "false";
+            clickedElement.style.cursor = 'default';
+            
+            // 3. Reveal the next element in the sequence
+            if (currentStep < steps.length) {
+                const id = steps[currentStep];
+                const element = document.getElementById(id);
+                
+                if (element) {
+                    element.classList.remove('hidden');
+                    // Mark the new element as active (if it's a bubble-wrapper)
+                    if (element.classList.contains('bubble-wrapper')) {
+                        element.dataset.active = "true";
+                    }
+                    // Scroll to the new element
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                // 4. Advance the step counter
+                currentStep++;
+            }
+        }
+    </script>
 </head>
 <body class="bg-gray-100 antialiased">
 
@@ -42,31 +100,32 @@
         
         <!-- Activity Title -->
         <header class="mb-6 p-6 md:p-8 rounded-xl" style="background-color: #513873;">
-            <h1 class="text-3xl font-bold text-white">Learning Activity: Understanding Your 'Blind Spots'</h1>
-            <p class="mt-2 text-lg text-indigo-100">In a busy club, we often make quick judgments. Let's look at some common "shortcuts" and why they can be dangerous.</p>
+            <h1 class="text-3xl font-bold text-white">Learning Activity: Understanding Assumptions</h1>
+            <!-- Updated instruction text -->
+            <p class="mt-2 text-lg text-indigo-100">Select the chat bubbles to reveal information.</p>
         </header>
 
         <!-- Chat Feed Container -->
         <div class="space-y-6">
 
             <!-- Item 1 -->
-            <!-- User Thought -->
-            <div class="flex justify-end items-start space-x-3">
+            <!-- This one is visible by default -->
+            <!-- We set its step to 0, and active to true -->
+            <div id="item-1-user" class="flex justify-end items-start space-x-3 bubble-wrapper" data-step="0" data-active="true" onclick="revealNext(this)">
                 <div class="chat-bubble user-bubble">
                     <p class="font-semibold">Common Thought</p>
-                    <p>"It's just a drunk argument."</p>
+                    <p><strong>"It's just a drunk argument."</strong></p>
                 </div>
-                <!-- User Icon: Assumes 'user_icon.png' is in the same folder -->
-                <img src="user_icon.png" 
+                <img src="Common Thought.png" 
                      alt="Common Thought" 
                      class="icon bg-indigo-200"
                      onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
             </div>
             
-            <!-- Problem Explanation -->
-            <div class="flex justify-start items-start space-x-3">
-                <!-- Problem Icon: Assumes 'problem_icon.png' is in the same folder -->
-                <img src="problem_icon.png" 
+            <!-- Problem Explanation (Now hidden by default with an ID) -->
+            <!-- We set its step to 1, and active to false -->
+            <div id="item-1-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="1" data-active="false" onclick="revealNext(this)">
+                <img src="The Problem.png" 
                      alt="The Problem" 
                      class="icon bg-red-200"
                      onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
@@ -77,21 +136,19 @@
             </div>
 
             <!-- Item 2 -->
-            <!-- User Thought -->
-            <div class="flex justify-end items-start space-x-3">
+            <div id="item-2-user" class="flex justify-end items-start space-x-3 hidden bubble-wrapper" data-step="2" data-active="false" onclick="revealNext(this)">
                 <div class="chat-bubble user-bubble">
                     <p class="font-semibold">Common Thought</p>
-                    <p>"That's a private matter, it's not our business."</p>
+                    <p><strong>"That's a private matter, it's not our business."</strong></p>
                 </div>
-                <img src="user_icon.png" 
+                <img src="Common Thought.png" 
                      alt="Common Thought" 
                      class="icon bg-indigo-200"
                      onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
             </div>
             
-            <!-- Problem Explanation -->
-            <div class="flex justify-start items-start space-x-3">
-                <img src="problem_icon.png" 
+            <div id="item-2-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="3" data-active="false" onclick="revealNext(this)">
+                <img src="The Problem.png" 
                      alt="The Problem" 
                      class="icon bg-red-200"
                      onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
@@ -102,21 +159,19 @@
             </div>
 
             <!-- Item 3 -->
-            <!-- User Thought -->
-            <div class="flex justify-end items-start space-x-3">
+            <div id="item-3-user" class="flex justify-end items-start space-x-3 hidden bubble-wrapper" data-step="4" data-active="false" onclick="revealNext(this)">
                 <div class="chat-bubble user-bubble">
                     <p class="font-semibold">Common Thought</p>
-                    <p>"They're always dramatic" or "They're just carrying on."</p>
+                    <p><strong>"They're always dramatic" or "They're just carrying on."</strong></p>
                 </div>
-                <img src="user_icon.png" 
+                <img src="Common Thought.png" 
                      alt="Common Thought" 
                      class="icon bg-indigo-200"
                      onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
             </div>
             
-            <!-- Problem Explanation -->
-            <div class="flex justify-start items-start space-x-3">
-                <img src="problem_icon.png" 
+            <div id="item-3-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="5" data-active="false" onclick="revealNext(this)">
+                <img src="The Problem.png" 
                      alt="The Problem" 
                      class="icon bg-red-200"
                      onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
@@ -127,21 +182,19 @@
             </div>
 
             <!-- Item 4 -->
-            <!-- User Thought -->
-            <div class="flex justify-end items-start space-x-3">
+            <div id="item-4-user" class="flex justify-end items-start space-x-3 hidden bubble-wrapper" data-step="6" data-active="false" onclick="revealNext(this)">
                 <div class="chat-bubble user-bubble">
                     <p class="font-semibold">Common Thought</p>
-                    <p>"If it's so bad, why don't they just leave?"</p>
+                    <p><strong>"If it's so bad, why don't they just leave?"</strong></p>
                 </div>
-                <img src="user_icon.png" 
+                <img src="Common Thought.png" 
                      alt="Common Thought" 
                      class="icon bg-indigo-200"
                      onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
             </div>
             
-            <!-- Problem Explanation -->
-            <div class="flex justify-start items-start space-x-3">
-                <img src="problem_icon.png" 
+            <div id="item-4-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="7" data-active="false" onclick="revealNext(this)">
+                <img src="The Problem.png" 
                      alt="The Problem" 
                      class="icon bg-red-200"
                      onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
@@ -153,8 +206,9 @@
 
         </div> <!-- End Chat Feed -->
 
-        <!-- Concluding Section -->
-        <footer class="mt-10 pt-6 border-t border-gray-300">
+        <!-- Concluding Section (ID added, 'hidden' by default) -->
+        <!-- This is not a bubble-wrapper, so it's revealed at step 8 but not part of the click chain -->
+        <footer id="footer-goal" class="mt-10 pt-6 border-t border-gray-300 hidden">
             <h2 class="text-2xl font-bold text-gray-900">The Goal: Awareness, Not Judgment</h2>
             <p class="mt-2 text-base text-gray-700">This isn't about telling you your values are wrong. The goal is <strong>self-awareness</strong>.</p>
             <p class="mt-2 text-base text-gray-700">By understanding our own biases, we can make sure they don't stop us from acting when someone might need help.</p>
