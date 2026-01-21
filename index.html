@@ -52,19 +52,22 @@
         let currentStep = 0;
         // This array defines the ID of the *next* element to reveal
         const steps = [
-            'item-1-problem', // Revealed by step 0
-            'item-2-user',    // Revealed by step 1
-            'item-2-problem', // Revealed by step 2
-            'item-3-user',    // Revealed by step 3
-            'item-3-problem', // Revealed by step 4
-            'item-4-user',    // Revealed by step 5
-            'item-4-problem', // Revealed by step 6
-            'footer-goal'     // Revealed by step 7
+            'item-1-problem', // Step 0 click reveals this
+            'item-2-user',    // Step 1 click reveals this
+            'item-2-problem', // Step 2 click reveals this
+            'item-3-user',    // Step 3 click reveals this
+            'item-3-problem', // Step 4 click reveals this
+            'item-4-user',    // Step 5 click reveals this
+            'item-4-problem', // Step 6 click reveals this
+            'item-5-user',    // Step 7 click reveals this
+            'item-5-problem', // Step 8 click reveals this
+            'item-6-user',    // Step 9 click reveals this
+            'item-6-problem', // Step 10 click reveals this
+            'footer-goal'     // Step 11 click reveals this
         ];
 
         function revealNext(clickedElement) {
             // 1. Check if the element clicked is the one we expect
-            // This prevents clicking old bubbles out of order
             if (parseInt(clickedElement.dataset.step) !== currentStep) {
                 return;
             }
@@ -101,113 +104,117 @@
         <!-- Activity Title -->
         <header class="mb-6 p-6 md:p-8 rounded-xl" style="background-color: #513873;">
             <h1 class="text-3xl font-bold text-white">Learning Activity: Understanding Assumptions</h1>
-            <!-- Updated instruction text -->
             <p class="mt-2 text-lg text-indigo-100">Select the chat bubbles to reveal information.</p>
         </header>
 
         <!-- Chat Feed Container -->
         <div class="space-y-6">
 
-            <!-- Item 1 -->
-            <!-- This one is visible by default -->
-            <!-- We set its step to 0, and active to true -->
+            <!-- Item 1: Time Management -->
             <div id="item-1-user" class="flex justify-end items-start space-x-3 bubble-wrapper" data-step="0" data-active="true" onclick="revealNext(this)">
                 <div class="chat-bubble user-bubble">
                     <p class="font-semibold">Common Thought</p>
-                    <p><strong>"It's just a drunk argument."</strong></p>
+                    <p><strong>"They’re just bad at time management."</strong></p>
                 </div>
-                <img src="Common Thought.png" 
-                     alt="Common Thought" 
-                     class="icon bg-indigo-200"
-                     onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+                <img src="Common Thought.png" alt="User" class="icon bg-indigo-200" onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
             </div>
             
-            <!-- Problem Explanation (Now hidden by default with an ID) -->
-            <!-- We set its step to 1, and active to false -->
             <div id="item-1-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="1" data-active="false" onclick="revealNext(this)">
-                <img src="The Problem.png" 
-                     alt="The Problem" 
-                     class="icon bg-red-200"
-                     onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <img src="The Problem.png" alt="Problem" class="icon bg-red-200" onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
                 <div class="chat-bubble problem-bubble">
                     <p class="font-semibold text-red-700">The Problem</p>
-                    <p>We blame the alcohol instead of the abuser's actions. It's easy to assume both people are equally at fault, which might make us miss the signs of fear or control.</p>
+                    <p>This assumption overlooks possible underlying issues like DFV. Judging someone as lazy or disorganised can prevent us from noticing signs of stress, fear, or control.</p>
                 </div>
             </div>
 
-            <!-- Item 2 -->
+            <!-- Item 2: Flexible Work -->
             <div id="item-2-user" class="flex justify-end items-start space-x-3 hidden bubble-wrapper" data-step="2" data-active="false" onclick="revealNext(this)">
                 <div class="chat-bubble user-bubble">
                     <p class="font-semibold">Common Thought</p>
-                    <p><strong>"That's a private matter, it's not our business."</strong></p>
+                    <p><strong>"They’re taking advantage of flexible work policies."</strong></p>
                 </div>
-                <img src="Common Thought.png" 
-                     alt="Common Thought" 
-                     class="icon bg-indigo-200"
-                     onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+                <img src="Common Thought.png" alt="User" class="icon bg-indigo-200" onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
             </div>
             
             <div id="item-2-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="3" data-active="false" onclick="revealNext(this)">
-                <img src="The Problem.png" 
-                     alt="The Problem" 
-                     class="icon bg-red-200"
-                     onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <img src="The Problem.png" alt="Problem" class="icon bg-red-200" onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
                 <div class="chat-bubble problem-bubble">
                     <p class="font-semibold text-red-700">The Problem</p>
-                    <p>We all value privacy, and it can feel wrong to 'interfere' in someone's personal life. But our job description includes a duty of care. When a person's safety is at risk, it is our business.</p>
+                    <p>Bias can lead us to assume misuse rather than recognising a genuine need for safety or support. This mindset can discourage disclosure and harm trust.</p>
                 </div>
             </div>
 
-            <!-- Item 3 -->
+            <!-- Item 3: Partner Calls -->
             <div id="item-3-user" class="flex justify-end items-start space-x-3 hidden bubble-wrapper" data-step="4" data-active="false" onclick="revealNext(this)">
                 <div class="chat-bubble user-bubble">
                     <p class="font-semibold">Common Thought</p>
-                    <p><strong>"They're always dramatic" or "They're just carrying on."</strong></p>
+                    <p><strong>"Their partner calls all the time because they care."</strong></p>
                 </div>
-                <img src="Common Thought.png" 
-                     alt="Common Thought" 
-                     class="icon bg-indigo-200"
-                     onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+                <img src="Common Thought.png" alt="User" class="icon bg-indigo-200" onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
             </div>
             
             <div id="item-3-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="5" data-active="false" onclick="revealNext(this)">
-                <img src="The Problem.png" 
-                     alt="The Problem" 
-                     class="icon bg-red-200"
-                     onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <img src="The Problem.png" alt="Problem" class="icon bg-red-200" onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
                 <div class="chat-bubble problem-bubble">
                     <p class="font-semibold text-red-700">The Problem</p>
-                    <p>If we've labelled a regular as 'difficult' or 'high-drama', we can start to tune them out. We stop seeing real signs of danger and just put it down to 'them being them'.</p>
+                    <p>Frequent calls may indicate monitoring or control, not affection. Assuming it’s harmless can make us miss coercive behaviours.</p>
                 </div>
             </div>
 
-            <!-- Item 4 -->
+            <!-- Item 4: Toxic Couple -->
             <div id="item-4-user" class="flex justify-end items-start space-x-3 hidden bubble-wrapper" data-step="6" data-active="false" onclick="revealNext(this)">
                 <div class="chat-bubble user-bubble">
                     <p class="font-semibold">Common Thought</p>
-                    <p><strong>"If it's so bad, why don't they just leave?"</strong></p>
+                    <p><strong>"They fight all the time—they’re just a toxic couple."</strong></p>
                 </div>
-                <img src="Common Thought.png" 
-                     alt="Common Thought" 
-                     class="icon bg-indigo-200"
-                     onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+                <img src="Common Thought.png" alt="User" class="icon bg-indigo-200" onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
             </div>
             
             <div id="item-4-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="7" data-active="false" onclick="revealNext(this)">
-                <img src="The Problem.png" 
-                     alt="The Problem" 
-                     class="icon bg-red-200"
-                     onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <img src="The Problem.png" alt="Problem" class="icon bg-red-200" onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
                 <div class="chat-bubble problem-bubble">
                     <p class="font-semibold text-red-700">The Problem</p>
-                    <p>This is a very common question, but it unfairly puts the focus on the victim's choices instead of the abuser's actions. As we'll learn, the reasons people stay are complex, often involving money, children, or genuine fear for their safety.</p>
+                    <p>This assumption minimises abuse and frames it as mutual conflict. It ignores power dynamics and the risk of escalating violence.</p>
+                </div>
+            </div>
+
+            <!-- Item 5: Leaving -->
+            <div id="item-5-user" class="flex justify-end items-start space-x-3 hidden bubble-wrapper" data-step="8" data-active="false" onclick="revealNext(this)">
+                <div class="chat-bubble user-bubble">
+                    <p class="font-semibold">Common Thought</p>
+                    <p><strong>"If it was really bad, they’d leave."</strong></p>
+                </div>
+                <img src="Common Thought.png" alt="User" class="icon bg-indigo-200" onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+            </div>
+            
+            <div id="item-5-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="9" data-active="false" onclick="revealNext(this)">
+                <img src="The Problem.png" alt="Problem" class="icon bg-red-200" onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <div class="chat-bubble problem-bubble">
+                    <p class="font-semibold text-red-700">The Problem</p>
+                    <p>Leaving is often the most dangerous time for a victim. Assuming it’s easy to leave shows a lack of understanding of fear, control, and systemic barriers.</p>
+                </div>
+            </div>
+
+            <!-- Item 6: Culture -->
+            <div id="item-6-user" class="flex justify-end items-start space-x-3 hidden bubble-wrapper" data-step="10" data-active="false" onclick="revealNext(this)">
+                <div class="chat-bubble user-bubble">
+                    <p class="font-semibold">Common Thought</p>
+                    <p><strong>"That’s just how things are in their culture."</strong></p>
+                </div>
+                <img src="Common Thought.png" alt="User" class="icon bg-indigo-200" onerror="this.src='https://placehold.co/40x40/E0E7FF/1F2937?text=U'">
+            </div>
+            
+            <div id="item-6-problem" class="flex justify-start items-start space-x-3 hidden bubble-wrapper" data-step="11" data-active="false" onclick="revealNext(this)">
+                <img src="The Problem.png" alt="Problem" class="icon bg-red-200" onerror="this.src='https://placehold.co/40x40/FECACA/B91C1C?text=!'">
+                <div class="chat-bubble problem-bubble">
+                    <p class="font-semibold text-red-700">The Problem</p>
+                    <p>This stereotype excuses violence and perpetuates discrimination. Abuse is never acceptable, regardless of cultural context.</p>
                 </div>
             </div>
 
         </div> <!-- End Chat Feed -->
 
-        <!-- Concluding Section (ID added, 'hidden' by default) -->
-        <!-- This is not a bubble-wrapper, so it's revealed at step 8 but not part of the click chain -->
+        <!-- Concluding Section -->
         <footer id="footer-goal" class="mt-10 pt-6 border-t border-gray-300 hidden">
             <h2 class="text-2xl font-bold text-gray-900">The Goal: Awareness, Not Judgment</h2>
             <p class="mt-2 text-base text-gray-700">This isn't about telling you your values are wrong. The goal is <strong>self-awareness</strong>.</p>
